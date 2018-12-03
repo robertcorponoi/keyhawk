@@ -1,0 +1,130 @@
+<h1 align="center">Keyhawk</h1>
+
+<p align="center">Keyhawk is used to create and manage keybinds for your JavaScript game.<p>
+
+<div align="center" style="margin-bottom: 1.5rem">
+  <a href="https://badge.fury.io/js/keyhawk"><img src="https://badge.fury.io/js/keyhawk.svg" alt="npm version" height="18"></a>
+  <a href="https://badge.fury.io/js/keyhawk"><img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build" height="18"></a>
+  <a href="https://badge.fury.io/js/keyhawk"><img src="https://img.shields.io/github/issues/robertcorponoi/keyhawk.svg" alt="issues" height="18"></a>
+  <a href="https://badge.fury.io/js/keyhawk"><img src="https://img.shields.io/github/license/robertcorponoi/keyhawk.svg" alt="license" height="18"></a>
+</div>
+
+Keyhawk lets you easily and quickly create keybinds for your JavaScript games. Keybinds are creating by assigning one or more keys to be bound and then passing a method that should be run when the keybind is active (the keys for it are pressed) and an optional delay that can be used to limit how often the keybind can be used.
+
+Keyhawk also gives you the option of using the default game loop module that is used to check for which keys are pressed or you can use your own loop and just use the exposed API.
+
+## **Installation**
+
+Keyhawk is an ES6 module that can be used by downloading the contents of the `src` folder or downloading it through NPM:
+
+```
+$ npm install --save keyhawk
+```
+
+## **Initialization**
+
+Keyhawk upon initialization can be passed an options object and for now there is just one option that can be specified.
+
+| param           | type    | description                                                                                                        | default |
+|-----------------|---------|--------------------------------------------------------------------------------------------------------------------|---------|
+| options         | Object  |                                                                                                                    | {}      |
+| options.useLoop | boolean | Indicates whether Keyhawk should use the default game loop module for checking if a keybind is actively being used | true    |
+
+
+## **Basic Example**
+
+To begin using Keyhawk, simply import the module from wherever its located and specify as an option of whether you would like to use the built in game loop or not.
+
+```js
+import { Keyhawk } from './path/to/keyhawk.js';
+
+
+const keyhawk = new Keyhawk();
+```
+
+**Note:** Keyhawk is composed of 3 files and an optional folder containing the game loop module so it is recommended to install Keyhawk through NPM and import from there.
+
+## **Creating Keybinds**
+
+To create a new keybind, you start out by using the `keybind` method which takes a variable amount of arguments depending on how many keys you want to use.
+
+The keys that can be assigned to a keybind should be derived from the `keyhawk.KEY` Object as these have been normalized and ensured to work.
+
+An example of creating a single key keybind can be done as shown:
+
+```js
+keyhawk.keybind(keyhawk.KEY.A);
+```
+
+or you can add as many keys as you would like:
+
+```js
+keyhawk.keybind(keyhawk.KEY.SPACE, keyhawk.KEY.CTRL, keyhawk.KEY.W);
+```
+
+**Note:** Order of the keys does not matter.
+
+Just this keybind on its own doesn't do much as there's no action associated with it. To add a function to run when the keybind is active, you can specify an action:
+
+```js
+function hello() {
+
+    console.log('Hello!');
+
+}
+
+keyhawk.keybind(keyhawk.KEY.A).action(hello);
+```
+
+This will run the `hello` method everytime the keybind is active.
+
+Notice how `action` can be chained, this is because `keybind` returns an instance of the keybind and so it could be written as:
+
+```js
+function hello() {
+
+    console.log('Hello!');
+
+}
+
+const sayHello = keyhawk.keybind(keyhawk.KEY.A);
+
+sayHello.action(hello);
+```
+
+Lastly, you can add a delay to the keybind so that a certain amount of time has to pass between uses. This does not apply to the very first press though which means that if you set a delay of 5000ms you don't have to wait 5000ms to use it for the first time it will be available immediately but after that it will rest for 5000ms.
+
+```js
+function hello() {
+
+    console.log('Hello!');
+
+}
+
+const sayHello = keyhawk.keybind(keyhawk.KEY.A).action(hello).delay(5000);
+```
+
+## Running Tests
+
+To run the currently available Keyhawk tests, simply use the command below.
+
+```
+$ npm test
+```
+
+## Using Your Own Game Loop
+
+If you are already using a game loop for another purpose then you should set the `useLoop` option to `false` so that the Keyhawk game loop and your game loop aren't both running at the same time. Keyhawk exposes the `update` method which is what checks for active keybinds and you can call that within your project inside of your game loop.
+
+```js
+const keyhawk = new Keyhawk({ useLoop: false });
+
+// Set up your keybinds here...
+
+// And inside of your game loop, call:
+keyhawk.update();
+```
+
+## License
+
+MIT

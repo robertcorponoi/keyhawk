@@ -1,0 +1,26 @@
+{
+  "name": "keyhawk",
+  "version": "0.1.1",
+  "description": "Creates and manages keybinds for your JavaScript games with ease.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/robertcorponoi/keyhawk.git"
+  },
+  "keywords": [
+    "keybind, key, keys, game, keyboard"
+  ],
+  "author": "Robert Corponoi",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.1.1"
+  },
+  "dependencies": {
+    "deltaframe": "^0.1.1"
+  }
+}
