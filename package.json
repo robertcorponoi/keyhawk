@@ -1,6 +1,6 @@
 {
   "name": "keyhawk",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Creates and manages keybinds for your JavaScript games with ease.",
   "main": "index.js",
   "scripts": {
