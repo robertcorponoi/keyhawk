@@ -1,6 +1,6 @@
 'use strict'
 
-import { Keyhawk } from '../keyhawk.js';
+import Keyhawk from '../keyhawk.js';
 
 let keyhawk;
 

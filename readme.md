@@ -7,10 +7,10 @@
 <p align="center">Keyhawk is used to create and manage keybinds for your JavaScript game.<p>
 
 <div align="center">
-  <a href="https://badge.fury.io/js/curtail"><img src="https://badge.fury.io/js/keyhawk.svg" alt="npm version" height="18"></a>
-  <a href="https://badge.fury.io/js/curtail"><img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build" height="18"></a>
-  <a href="https://badge.fury.io/js/curtail"><img src="https://img.shields.io/github/issues/robertcorponoi/keyhawk.svg" alt="issues" height="18"></a>
-  <a href="https://badge.fury.io/js/curtail"><img src="https://img.shields.io/github/license/robertcorponoi/keyhawk.svg" alt="license" height="18"></a>
+  <a href="#"><img src="https://badge.fury.io/js/keyhawk.svg" alt="npm version" height="18"></a>
+  <a href="#"><img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build" height="18"></a>
+  <a href="#"><img src="https://img.shields.io/github/issues/robertcorponoi/keyhawk.svg" alt="issues" height="18"></a>
+  <a href="#"><img src="https://img.shields.io/github/license/robertcorponoi/keyhawk.svg" alt="license" height="18"></a>
 </div>
 
 Keyhawk lets you easily and quickly create keybinds for your JavaScript games. Keybinds are creating by assigning one or more keys to be bound and then passing a method that should be run when the keybind is active (the keys for it are pressed) and an optional delay that can be used to limit how often the keybind can be used.
@@ -19,10 +19,10 @@ Keyhawk also gives you the option of using the default game loop module that is 
 
 ## **Installation**
 
-Keyhawk is an ES6 module that can be used by downloading the contents of the `src` folder or downloading it through NPM:
+Keyhawk is an ES6 module that can be used by downloading the package through NPM:
 
 ```
-$ npm install --save keyhawk
+$ npm install keyhawk
 ```
 
 ## **Initialization**
@@ -37,16 +37,14 @@ Keyhawk upon initialization can be passed an options object and for now there is
 
 ## **Basic Example**
 
-To begin using Keyhawk, simply import the module from wherever its located and specify as an option of whether you would like to use the built in game loop or not.
+To begin using Keyhawk, simply import the default module from wherever its located and specify as an option of whether you would like to use the built in game loop or not.
 
 ```js
-import { Keyhawk } from './path/to/keyhawk.js';
+import Keyhawk from './path/to/keyhawk.js';
 
 
 const keyhawk = new Keyhawk();
 ```
-
-**Note:** Keyhawk is composed of 3 files and an optional folder containing the game loop module so it is recommended to install Keyhawk through NPM and import from there.
 
 ## **Creating Keybinds**
 
@@ -125,8 +123,8 @@ const keyhawk = new Keyhawk({ useLoop: false });
 
 // Set up your keybinds here...
 
-// And inside of your game loop, call:
-keyhawk.update();
+// And inside of your game loop, call the following method providing the current time from your loop:
+keyhawk.check(time);
 ```
 
 ## License
