@@ -7,7 +7,7 @@
  * 
  * @version 0.1.0
  */
-interface KeybindObject {
+export default interface KeybindObject {
 
 	[key: string]: boolean;
 
