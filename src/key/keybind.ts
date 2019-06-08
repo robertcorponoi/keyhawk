@@ -5,13 +5,10 @@ import KeybindObject from '../interfaces/KeybindObject';
 /**
  * A keybind represents one key or a combination of keys that perform an action.
  * 
- * Keybinds can have an optional callback that is run during the `check` method
- * either automatically or in your own game loop.
+ * Keybinds can have an optional callback that is run during the `check` method either automatically 
+ * or in your own game loop.
  * 
- * Keybinds can also have a delay to ensure that a certain amount of time has
- * passed between presses.
- * 
- * @author Robert Corponoi <robertcorponoi@gmail.com>
+ * Keybinds can also have a delay to ensure that a certain amount of time has passed between presses.
  * 
  * @version 0.1.0
  */
@@ -21,6 +18,7 @@ export default class Keybind {
 	 * The keys that are assigned to this keybind.
 	 * 
 	 * @since 0.1.0
+   * 
 	 * @private
 	 * 
 	 * @property {KeybindObject}
@@ -31,6 +29,8 @@ export default class Keybind {
 	 * The callback method to run when this keybind is used.
 	 * 
 	 * @since 0.1.0
+   * 
+   * @private
 	 * 
 	 * @property {Function}
 	 * 
@@ -54,7 +54,6 @@ export default class Keybind {
 	 * The last time that this keybind was used.
 	 * 
 	 * @since 0.1.0
-	 * @private
 	 * 
 	 * @property {number}
 	 * 
@@ -149,8 +148,7 @@ export default class Keybind {
 	}
 
 	/**
-	 * An empty method to use as the default action for the keybind in case
-	 * no action is added.
+	 * An empty method to use as the default action for the keybind in case no action is added.
 	 * 
 	 * @since 0.1.0
 	 * @private

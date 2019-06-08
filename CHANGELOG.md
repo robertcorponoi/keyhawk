@@ -1,3 +1,18 @@
+1.0.3 / 209-06-08
+=================
+
+* Fixed an invalid interface reference in Typescript.
+
+1.0.2 / 209-06-08
+=================
+
+* Updated dist and bundle
+
+1.0.1 / 209-06-08
+=================
+
+* Normalized file names.
+
 1.0.0 / 2018-03-10
 ==================
 
