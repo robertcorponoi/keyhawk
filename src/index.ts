@@ -3,10 +3,9 @@
 import Key from './key/key';
 import Keybind from './key/keybind';
 import Options from './options/Options';
+import KeybindObject from './interfaces/KeybindObject';
 
 import Deltaframe from 'deltaframe';
-
-/// <reference path="./interfaces/KeybindObject.ts" />
 
 /**
  * Keyhawk lets you focus on creating your game or application without
