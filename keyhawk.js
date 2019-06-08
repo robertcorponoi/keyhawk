@@ -343,134 +343,112 @@ function Options(options) {
   Object.assign(this, options);
 };
 
-function _classCallCheck$1(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
+function unwrapExports (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
-function _defineProperties$1(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
-function _createClass$1(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties$1(Constructor, staticProps);
-  return Constructor;
-}
+var Options_1 = createCommonjsModule(function (module, exports) {
+/**
+ * Defines the options available for an instance of Deltaframe along with their default
+ * values if any exist.
+ * 
+ * @since 1.0.0
+ */
 
-function _defineProperty$1(obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
 
-  return obj;
-}
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Options$1 =
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var Options =
 /*#__PURE__*/
 function () {
   /**
-   * The lowest the game loop's frames per second can drop to 
-   * before the loop panics.
+   * The lowest the fps can drop to before the Deltaframe restarts to attempt to fix the
+    * problem.
    * 
    * @since 1.0.0
    * 
    * @property {number}
-   * @readonly
+    * 
+    * @default 15
    */
 
   /**
-   * The frames per second that the game loop should aim to 
-   * achieve.
+   * The fps that the game loop should aim to  achieve.
    * 
    * @since 1.0.0
    * 
    * @property {number}
-   * @readonly
+    * 
+    * @default 60
    */
 
   /**
-   * When the game loop goes below the minFps it will restart. 
-   * This indicates how many times it will restart before stopping 
-   * permanently.
+   * When the fps goes below the minFps Deltaframe will restart. This indicates how many times it will 
+    * restart before stopping permanently.
    * 
    * @since 1.0.0
    * 
    * @property {number}
-   * @readonly
+    * 
+    * @default Infinity
    */
 
   /**
-   * Specify the amount of milliseconds that Deltaframe should run 
-   * for.
+   * Specify the amount of milliseconds that Deltaframe should run for.
    * 
    * @since 1.0.0
    * 
    * @property {number}
-   * @readonly
+    * 
+    * @default Infinity
    */
 
   /**
-   * Indicates whether setTimeout should be used even if requestAnimationFrame
-   * is supported by the user's browser.
+   * Indicates whether setTimeout should be used even if requestAnimationFrame is supported by the user's browser.
    * 
    * @since 1.0.0
    * 
    * @property {number}
-   * @readonly
+    * 
+    * @default false
    */
 
   /**
-    * @param {Object} [options]
-    * @param {number} [options.minFps=15] The lowest the game loop's frames per second can drop to before the loop panics.
-    * @param {number} [options.targetFps=60] The frames per second that the game loop should aim to achieve.
-    * @param {number} [options.maxRestartAttempts=Infinity] When the game loop goes below the minFps it will restart. This indicates how many times it will restart before stopping permanently.
-   * @param {number} [options.runTime=Infinity] Specify the amount of milliseconds that Deltaframe should run for.
-    * @param {boolean} [options.forceSetTimeout=false] Indicates whether setTimeout should be used even if requestAnimationFrame is supported by the user's browser.
+    * @param {Object} options The initialization options passed to Deltaframe.
     */
-  function Options(options) {
-    _classCallCheck$1(this, Options);
+  function Options() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    _defineProperty$1(this, "minFps", void 0);
+    _classCallCheck(this, Options);
 
-    _defineProperty$1(this, "targetFps", void 0);
+    _defineProperty(this, "minFps", 15);
 
-    _defineProperty$1(this, "maxRestartAttempts", void 0);
+    _defineProperty(this, "targetFps", 60);
 
-    _defineProperty$1(this, "runTime", void 0);
+    _defineProperty(this, "maxRestartAttempts", Infinity);
 
-    _defineProperty$1(this, "forceSetTimeout", void 0);
+    _defineProperty(this, "runTime", Infinity);
 
-    this.minFps = 15;
-    this.targetFps = 60;
-    this.maxRestartAttempts = Infinity;
-    this.runTime = Infinity;
-    this.forceSetTimeout = false;
-    /**
-     * Replace the default values with the user specified values, if they exist.
-     * 
-     * @since 1.0.0
-     */
+    _defineProperty(this, "forceSetTimeout", false);
 
-    Object.assign(this, this, options);
+    Object.assign(this, options);
   }
   /**
-   * Return the minFps as a decimal representing the amount of
-   * time before a frame should occur.
+   * Return the minFps as a decimal representing the amount of time before a frame should occur.
    * 
    * @since 1.0.0
    * 
@@ -478,14 +456,13 @@ function () {
    */
 
 
-  _createClass$1(Options, [{
+  _createClass(Options, [{
     key: "minFpsCalc",
     get: function get() {
       return Math.floor(1000 / this.minFps);
     }
     /**
-     * Return the targetFps as a decimal representing the amount of
-     * time before a frame should occur.
+     * Return the targetFps as a decimal representing the amount of time before a frame should occur.
      * 
      * @since 1.0.0
      * 
@@ -502,72 +479,103 @@ function () {
   return Options;
 }();
 
+exports["default"] = Options;
+
+});
+
+unwrapExports(Options_1);
+
+var RequestAnimationFrame_1 = createCommonjsModule(function (module, exports) {
+/**
+ * Abstract the use of requestAnimationFrame and setTimeout under one name so that Deltaframe itself does 
+ * not have to worry about which one to use.
+ * 
+ * This also uses the requestAnimationFrame and cancelAnimationFrame that are supported by the user's browser 
+ * and forces setTimeout if desired.
+ * 
+ * @since 0.1.0
+ */
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var RequestAnimationFrame =
 /*#__PURE__*/
 function () {
+  /**
+   * A reference to the id returned by requestAnimationFrame or setTimeout so 
+   * that we can cancel their operation when needed.
+   * 
+   * @since 0.1.0
+   * 
+   * @property {number}
+   */
+
+  /**
+   * Keeps track of whether the loop is already running or not so it's not accidently 
+   * restarted.
+   * 
+   * @since 0.1.0
+   * 
+   * @property {boolean}
+   * 
+   * @default false
+   */
+
+  /**
+   * The function that should be run on every update of the loop.
+   * 
+   * @since 0.1.0
+   * 
+   * @property {Function}
+   * 
+   * @default ()=>{}
+   */
+
+  /**
+   * Indicates whether setTImeout is being used instead of requestAnimationFrame.
+   * 
+   * @since 0.1.0
+   * 
+   * @property {boolean}
+   * 
+   * @default false
+   */
   function RequestAnimationFrame() {
-    _classCallCheck$1(this, RequestAnimationFrame);
+    _classCallCheck(this, RequestAnimationFrame);
 
-    _defineProperty$1(this, "id", void 0);
+    _defineProperty(this, "id", 0);
 
-    _defineProperty$1(this, "running", void 0);
+    _defineProperty(this, "running", false);
 
-    _defineProperty$1(this, "fn", void 0);
+    _defineProperty(this, "fn", function () {});
 
-    _defineProperty$1(this, "usingSetTimeout", void 0);
+    _defineProperty(this, "usingSetTimeout", false);
 
     /**
-     * Keep track of the id returned from requestAnimationFrame or setTimeout so we can
-     * use it to cancel them later on.
+     * Use the version of requestAnimationFrame that is supported by the user's browser and if none are 
+     * supported, use setTimeout instead.
      * 
-     * @property {number}
-     * @readonly
+     * @property {RequestAnimationFrame|setTimeout}
      */
-    this.id = 0;
-    /**
-     * Keep track of whether the loop is already running or not so we don't accidently
-     * restart it.
-     * 
-     * @property {boolean}
-     * @readonly
-     */
-
-    this.running = false;
-    /**
-     * The function, as sent from Deltaframe, that will be run every update of the loop.
-     * 
-     * @property {Function}
-     * @readonly
-     */
-
-    this.fn = function () {};
-    /**
-     * Indicates whether setTimeout is being used instead of requestAnimationFrame, either by force or
-     * by user's browser support.
-     * 
-     * @property {boolean}
-     * @readonly
-     */
-
-
-    this.usingSetTimeout = false;
-    /**
-     * Use the version of requestAnimationFrame that is supported by the user's browser and if none
-     * are supported, use setTimeout instead.
-     * 
-     * @property {RequestAnimationFrame}
-     * @readonly
-     */
-
     window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || function (f) {
       return setTimeout(f, 1000 / 60);
     };
     /**
-     * Use the version of cancelAnimationFrame that is supported by the user's browser and if none are
-     * supported, then setTimeout was used and so we use clearTimeout instead.
+     * Use the version of cancelAnimationFrame that is supported by the user's browser and if none are supported, 
+     * then setTimeout was used and so we use clearTimeout instead.
      * 
      * @property {cancelAnimationFrame}
-     * @readonly
      */
 
 
@@ -585,7 +593,7 @@ function () {
    */
 
 
-  _createClass$1(RequestAnimationFrame, [{
+  _createClass(RequestAnimationFrame, [{
     key: "start",
     value: function start(fn, forceSetTimeout) {
       var _this = this;
@@ -682,181 +690,213 @@ function () {
   return RequestAnimationFrame;
 }();
 
-/**
- * Deltaframe is an animation and game loop manager with a focus on punctuality
- * and a highly scalable framework.
- */
+exports["default"] = RequestAnimationFrame;
 
+});
+
+unwrapExports(RequestAnimationFrame_1);
+
+var deltaframe = createCommonjsModule(function (module, exports) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+
+var _Options = _interopRequireDefault(Options_1);
+
+var _RequestAnimationFrame = _interopRequireDefault(RequestAnimationFrame_1);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/**
+ * Deltaframe is an animation and game loop manager that makes sure your application
+ * is punctual and performant.
+ * 
+ * @author Robert Corponoi <robertcorponoi@gmail.com>
+ * 
+ * @version 1.0.2
+ */
 var Deltaframe =
 /*#__PURE__*/
 function () {
   /**
-   * Create an options Object by merging the user specified options 
-   * with the defaults.
-   * 
-   * @since 1.0.0
-   * 
-   * @property {Object}
-   * @readonly
-   */
-
-  /**
-   * The amount of times Deltaframe has restarted due to the average
-   * fps going below the the minFps.
+   * A reference to the options for this instance of Deltaframe.
    * 
    * @since 0.1.0
+   * @private
    * 
-   * @property {number}
-   * @readonly
+   * @property {Options}
    */
 
   /**
-   * Indicates whether Deltaframe is currently running and not paused 
+   * The amount of times Deltaframe has had to restart due to the average fps
+   * dipping below the minimum fps for a series of frames.
+   * 
+   * @since 0.1.0
+   * @private
+   * 
+   * @property {number}
+   */
+
+  /**
+   * Indicates whether Deltaframe is currently is currently running and not paused
    * or stopped.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {boolean}
-   * @readonly
    */
 
   /**
    * Indicates whether Deltaframe is currently paused.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {boolean}
-   * @readonly
    */
 
   /**
    * The function that will be called on every Deltaframe update.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {Function}
-   * @readonly
    */
 
   /**
    * The current frame that Deltaframe is on.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {number}
-   * @readonly
    */
 
   /**
-   * The current timestamp as of the latest RequestAnimationFrame 
-   * update.
+   * The current timestamp as of the latest call to RequestAnimationFrame.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {DOMHighResTimeStamp|number}
-   * @readonly
    */
 
   /**
    * The timestamp before the current timestamp.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {DOMHighResTimeStamp|number}
-   * @readonly
    */
 
   /**
    * The difference in time between the current time and the last time.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {number}
-   * @readonly
    */
 
   /**
    * The average difference in time between frames.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {number}
-   * @readonly
    */
 
   /**
-   * A set of up to 10 recent previous delta values that are used to get the
-   * mean delta.
+   * A set of up to 10 recent previous delta values that are used to get the mean delta.
    * 
    * @since 0.1.0
+   * @private
    * 
-   * @property {Array}
-   * @readonly
+   * @property {Array<number>}
    */
 
   /**
-   * Since we only want to go up to 10 on the deltaHistory, we keep track of
-   * what index we're on so we can reset to 0 once were at 10.
+   * Since we only want to go up to 10 on the deltaHistory, we keep track of what index we're 
+   * on so we can reset to 0 once were at 10.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {number}
-   * @readonly
    */
 
   /**
    * Initialize the RequestAnimationFrame abstraction module.
    * 
    * @since 0.1.0
+   * @private
    * 
    * @property {RequestAnimationFrame}
-   * @readonly
    */
 
   /**
    * Use the version of hidden that's supported by the user's browser.
    * 
    * @since 1.0.0
+   * @private
    * 
    * @property {document.hidden}
-   * @readonly
    */
 
   /**
    * @param {Object} [options] The options to pass to this Deltaframe instance.
+   * @param {number} [options.minFps=15] The minimum fps value allowed before Deltaframe will restart to try to correct the issue.
+   * @param {number} [options.targetFps=60] The fps that Deltaframe should aim to achieve.
+   * @param {number} [options.maxRestartAttempts=Infinity] The number of times Deltaframe will restart due to problems before stopping entirely.
+   * @param {number} [options.runTime=Infinity] The length of time that this instance of Deltaframe will run. This can be used to create an animation that lasts a specific amount of time.
+   * @param {boolean} [options.forceSetTimeout=false] If set to true, Deltaframe will use setTimeout for the loop instead of requestAnimationFrame.
    */
   function Deltaframe(options) {
-    _classCallCheck$1(this, Deltaframe);
+    _classCallCheck(this, Deltaframe);
 
-    _defineProperty$1(this, "_options", void 0);
+    _defineProperty(this, "_options", void 0);
 
-    _defineProperty$1(this, "_restartAttempts", void 0);
+    _defineProperty(this, "_restartAttempts", void 0);
 
-    _defineProperty$1(this, "_running", void 0);
+    _defineProperty(this, "_running", void 0);
 
-    _defineProperty$1(this, "_paused", void 0);
+    _defineProperty(this, "_paused", void 0);
 
-    _defineProperty$1(this, "_fn", void 0);
+    _defineProperty(this, "_fn", void 0);
 
-    _defineProperty$1(this, "_frame", void 0);
+    _defineProperty(this, "_frame", void 0);
 
-    _defineProperty$1(this, "_time", void 0);
+    _defineProperty(this, "_time", void 0);
 
-    _defineProperty$1(this, "_prevTime", void 0);
+    _defineProperty(this, "_prevTime", void 0);
 
-    _defineProperty$1(this, "_delta", void 0);
+    _defineProperty(this, "_delta", void 0);
 
-    _defineProperty$1(this, "_deltaAverage", void 0);
+    _defineProperty(this, "_deltaAverage", void 0);
 
-    _defineProperty$1(this, "_deltaHistory", void 0);
+    _defineProperty(this, "_deltaHistory", void 0);
 
-    _defineProperty$1(this, "_deltaIndex", void 0);
+    _defineProperty(this, "_deltaIndex", void 0);
 
-    _defineProperty$1(this, "_raf", void 0);
+    _defineProperty(this, "_raf", void 0);
 
-    _defineProperty$1(this, "_hidden", void 0);
+    _defineProperty(this, "_hidden", void 0);
 
-    this._options = new Options$1(options);
+    this._options = new _Options["default"](options);
     this._restartAttempts = 0;
     this._running = false;
     this._paused = false;
@@ -870,20 +910,13 @@ function () {
     this._deltaAverage = 0;
     this._deltaHistory = [];
     this._deltaIndex = 0;
-    this._raf = new RequestAnimationFrame();
+    this._raf = new _RequestAnimationFrame["default"]();
     this._hidden = document.hidden;
-    /**
-     * Run the initialization method after all of the properties have been
-     * loaded and assigned.
-     * 
-     * @since 0.1.0
-     */
 
     this._boot();
   }
   /**
-   * Return the current number of times that Deltafram has
-   * restarted.
+   * Return the number of times that Deltafram has restarted.
    * 
    * @since 1.0.0
    * 
@@ -891,12 +924,11 @@ function () {
    */
 
 
-  _createClass$1(Deltaframe, [{
+  _createClass(Deltaframe, [{
     key: "start",
 
     /**
-     * Start the Deltaframe loop using the abstracted requestAnimationFrame 
-     * or setTimeout methods.
+     * Start the loop.
      * 
      * @since 0.1.0
      * 
@@ -914,7 +946,7 @@ function () {
       }, this._options.forceSetTimeout);
     }
     /**
-     * Temporarily stop the loop, saving values to be resumed at a later point.
+     * Pause the loop operation saving the state to be resumed at a later time.
      * 
      * @since 0.1.0
      */
@@ -926,7 +958,7 @@ function () {
       this._running = false;
     }
     /**
-     * Resume the loop from its paused state.
+     * Resume the loop from a paused state.
      * 
      * @since 0.1.0
      */
@@ -987,8 +1019,8 @@ function () {
       });
     }
     /**
-     * Update is called whenever requestAnimationFrame decides it can process the
-     * next step of the loop or roughly 60 times per second using setTimeout.
+     * Update is called whenever requestAnimationFrame decides it can process the next step of the loop 
+     * or roughly 60 times per second using setTimeout.
      * 
      * @since 0.1.0
      * @private
@@ -1044,6 +1076,7 @@ function () {
      * Deltaframe is running on, Deltaframe will pause and when the user comes back it will resume.
      * 
      * @since 0.2.0
+     * @private
      */
 
   }, {
@@ -1058,7 +1091,7 @@ function () {
       return this._restartAttempts;
     }
     /**
-     * Returns the current running status of Deltaframe.
+     * Returns if Deltaframe is running or not.
      * 
      * @since 1.0.0
      * 
@@ -1071,7 +1104,7 @@ function () {
       return this._running;
     }
     /**
-     * Returns the current paused status of Deltaframe.
+     * Returns if Deltaframe is paused or not.
      * 
      * @since 0.1.0
      * 
@@ -1100,6 +1133,12 @@ function () {
 
   return Deltaframe;
 }();
+
+exports["default"] = Deltaframe;
+
+});
+
+var Deltaframe = unwrapExports(deltaframe);
 
 /**
  * Keyhawk lets you focus on creating your game or application without
@@ -1212,8 +1251,8 @@ function () {
 
       var keyObj = {};
 
-      for (var _i = 0; _i < keys.length; _i++) {
-        var key = keys[_i];
+      for (var _i = 0, _keys = keys; _i < _keys.length; _i++) {
+        var key = _keys[_i];
         keyObj[key] = true;
       }
 
