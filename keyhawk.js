@@ -165,6 +165,19 @@ var Key = {
   Z: 'z'
 };
 
+/**
+ * A keybind represents one key or a combination of keys that perform an action.
+ * 
+ * Keybinds can have an optional callback that is run during the `check` method
+ * either automatically or in your own game loop.
+ * 
+ * Keybinds can also have a delay to ensure that a certain amount of time has
+ * passed between presses.
+ * 
+ * @author Robert Corponoi <robertcorponoi@gmail.com>
+ * 
+ * @version 0.1.0
+ */
 var Keybind =
 /*#__PURE__*/
 function () {

@@ -1,3 +1,4 @@
+import KeybindObject from '../interfaces/KeybindObject';
 /**
  * A keybind represents one key or a combination of keys that perform an action.
  *
