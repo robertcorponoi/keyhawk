@@ -1,3 +1,9 @@
+1.0.4 / 209-06-08
+=================
+
+* Updated verbiaage
+* Cleaned up unnecessary/invalid jsdoc tags
+
 1.0.3 / 209-06-08
 =================
 
