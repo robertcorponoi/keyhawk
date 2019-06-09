@@ -12,7 +12,7 @@ import Deltaframe from 'deltaframe';
  * 
  * @author Robert Corponoi <robertcorponoi@gmail.com>
  * 
- * @version 1.0.4
+ * @version 1.0.5
  */
 export default class Keyhawk {
 
@@ -45,7 +45,7 @@ export default class Keyhawk {
    * 
    * @private
 	 */
-  private _keybinds: Array<Keybind> = [];
+  private keybinds: Array<Keybind> = [];
 
 	/**
 	 * If you don't want to create your own game loop to check keykind uses on an interval, you opt in to
@@ -63,12 +63,35 @@ export default class Keyhawk {
 	 * Keeps track of what keys have been pressed.
 	 * 
 	 * @since 0.1.0
-	 * @readonly
+   * 
+	 * @private
 	 * 
 	 * @property {Object}
 	 */
   private pressed: any = {};
 
+  /**
+   * Indicates whether using keybinds is currently disabled or not.
+   * 
+   * @since 1.0.5
+   * 
+   * @private
+   * 
+   * @property {boolean}
+   */
+  private disabled: boolean = false;
+
+  /**
+   * The amount of time that keybinds are disabled for, if any.
+   * 
+   * @since 1.0.5
+   * 
+   * @private
+   * 
+   * @property {number} 
+   */
+  private disabledTime: number = 0;
+  
 	/**
 	 * @param {Object} [options]
 	 * @param {boolean} [options.useLoop=true] By default Keyhawk will use the Deltaframe module to handle the checking of keybind uses. If you would like to use your own game loop or even just rather use a simple debounce method, you can set this to false.
@@ -78,19 +101,6 @@ export default class Keyhawk {
     this.options = new Options(options);
 
     this.boot();
-
-  }
-
-	/**
-	 * Returns all of the keybinds created.
-	 * 
-	 * @since 0.1.0
-	 * 
-	 * @returns {Array<Keybind>}
-	 */
-  get keybinds(): Array<Keybind> {
-
-    return this.keybinds;
 
   }
 
@@ -142,7 +152,7 @@ export default class Keyhawk {
 
     const keybind = new Keybind(keyObj);
 
-    this._keybinds.push(keybind);
+    this.keybinds.push(keybind);
 
     return keybind;
 
@@ -163,9 +173,44 @@ export default class Keyhawk {
 
       const isTime = time - o._lastUsed > o._delay;
 
+      if (this.disabled) {
+
+        if (time < time + this.disabledTime) return;
+
+        else this.resetDisabled();
+
+      }
+
       if (isActive && isTime) o.run(time);
 
     });
+
+  }
+
+  /**
+   * Disables the use of all keybinds until enable is called or until the wait time has expired if it is provided.
+   * 
+   * @since 1.0.5
+   * 
+   * @param {number} [lengthOfTime=Infinity] An optional amount of time to wait until keybinds are automatically enabled again. 
+   */
+  disable(lengthOfTime: number = Infinity) {
+
+    this.disabled = true;
+
+    this.disabledTime =  lengthOfTime;
+
+  }
+
+  /**
+   * If no end time is passed when calling the `disable` method, this method has to be called to enable the use of
+   * keybinds again.
+   * 
+   * @since 1.0.5 
+   */
+  enable() {
+
+    this.resetDisabled();
 
   }
 
@@ -204,6 +249,22 @@ export default class Keyhawk {
     event.preventDefault();
 
     return;
+
+  }
+
+  /**
+   * Resets both disabled properties, disabled to false and disabled time to 0 when keybinds are enabled
+   * again after being disabled.
+   * 
+   * @since 1.0.5
+   * 
+   * @private
+   */
+  private resetDisabled() {
+
+    this.disabled = false
+    
+    this.disabledTime = 0;
 
   }
 

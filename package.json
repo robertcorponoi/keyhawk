@@ -1,6 +1,6 @@
 {
   "name": "keyhawk",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Create keybinds easily with single and multi key support",
   "module": "keyhawk.js",
   "scripts": {
@@ -10,8 +10,7 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "bundle": "rollup -c",
-    "bundle:watch": "rollup -c --watch",
-    "test": "mocha"
+    "bundle:watch": "rollup -c --watch"
   },
   "repository": {
     "type": "git",

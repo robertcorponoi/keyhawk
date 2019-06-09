@@ -7,7 +7,9 @@
 
   <title>Keyhawk Tests</title>
 
-  <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
 
 </head>
 
@@ -15,21 +17,25 @@
 
   <div id="mocha"></div>
 
-  <script src="../node_modules/mocha/mocha.js"></script>
-  <script src="../node_modules/chai/chai.js"></script>
+  <script src="https://unpkg.com/chai/chai.js"></script>
+  <script src="https://unpkg.com/mocha/mocha.js"></script>
   <script src="../node_modules/sinon/pkg/sinon.js"></script>
 
-  <script>mocha.setup('bdd')</script>
+  <script class="mocha-init" type="module">
+
+    mocha.setup('bdd');
+    mocha.checkLeaks();
+
+  </script>
 
   <script type="module" src="keyhawk.keybind.test.js"></script>
   <script type="module" src="keyhawk.keyevents.test.js"></script>
   <script type="module" src="keyhawk.usage.test.js"></script>
 
-  <script type="module">
+  <script class="mocha-exec" type="module">
 
-    mocha.checkLeaks();
     mocha.run();
-
+    
   </script>
 
 </body>

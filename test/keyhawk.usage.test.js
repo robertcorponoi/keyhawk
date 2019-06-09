@@ -79,7 +79,72 @@ describe('Using Keybinds', () => {
 
 		}, 1000);
 
-	});
+  });
+  
+  it('should disable keybinds and not check for keybinds even when they are pressed', (done) => {
+
+    const spy = sinon.spy(testTask);
+
+    keyhawk.disable();
+
+    const crouchJump = keyhawk.keybind(keyhawk.KEY.SPACE, keyhawk.KEY.CTRL).action(spy);
+
+    simKey(' ');
+    simKey('Control');
+
+    setTimeout(() => {
+
+      chai.expect(crouchJump._lastUsed).to.equal(0);
+
+      done();
+
+    }, 1000);
+
+  });
+
+  it('should disable keybinds and then enable them after the wait time is over', (done) => {
+
+    const spy = sinon.spy(testTask);
+
+    keyhawk.disable(500);
+
+    const crouchJump = keyhawk.keybind(keyhawk.KEY.SPACE, keyhawk.KEY.CTRL).action(spy);
+
+    simKey(' ');
+    simKey('Control');
+
+    setTimeout(() => {
+
+      chai.expect(crouchJump._lastUsed).to.be.lessThan(10000);
+
+      done();
+
+    }, 1000);
+
+  });
+
+  it('should disable keybinds and then enable them', (done) => {
+
+    const spy = sinon.spy(testTask);
+
+    keyhawk.disable();
+
+    keyhawk.enable();
+
+    const crouchJump = keyhawk.keybind(keyhawk.KEY.SPACE, keyhawk.KEY.CTRL).action(spy);
+
+    simKey(' ');
+    simKey('Control');
+
+    setTimeout(() => {
+
+      chai.expect(crouchJump._lastUsed).to.be.lessThan(10000);
+
+      done();
+
+    }, 1000);
+
+  });
 
 });
 
