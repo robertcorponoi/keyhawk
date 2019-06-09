@@ -106,15 +106,22 @@ function hello() {
 const sayHello = keyhawk.keybind(keyhawk.KEY.A).action(hello).delay(5000);
 ```
 
-## Running Tests
+## **Disable/Enable**
 
-To run the currently available Keyhawk tests, simply use the command below.
+To diable the use of any and all keybinds you can call the disable method.
 
+```js
+keyhawk.disable();
 ```
-$ npm test
-```
 
-## Using Your Own Game Loop
+This method also takes an optional parameter which specifies how long you want keybinds to be disabled for. So for instance if you used `keyhawk.disable(10000)` all keybinds are going to be disabled for 10 seconds and they will be enabled again. If no time is provided then it is set to Infinity and you will have to call 
+
+```js
+keyhawk.enable();
+```
+to re-enable the use of keybinds.
+
+## **Using Your Own Game Loop**
 
 If you are already using a game loop for another purpose then you should set the `useLoop` option to `false` so that the Keyhawk game loop and your game loop aren't both running at the same time. Keyhawk exposes the `update` method which is what checks for active keybinds and you can call that within your project inside of your game loop.
 
@@ -127,6 +134,6 @@ const keyhawk = new Keyhawk({ useLoop: false });
 keyhawk.check(time);
 ```
 
-## License
+## **License**
 
 MIT
