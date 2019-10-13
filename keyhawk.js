@@ -358,36 +358,44 @@ function Options(options) {
   Object.assign(this, options);
 };
 
-function unwrapExports (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+function _classCallCheck$1(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
 }
 
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
+function _defineProperties$1(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
 }
 
-var Options_1 = createCommonjsModule(function (module, exports) {
-/**
- * Defines the options available for an instance of Deltaframe along with their default
- * values if any exist.
- * 
- * @since 1.0.0
- */
+function _createClass$1(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties$1(Constructor, staticProps);
+  return Constructor;
+}
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+function _defineProperty$1(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+  return obj;
+}
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var Options =
+var Options$1 =
 /*#__PURE__*/
 function () {
   /**
@@ -448,17 +456,17 @@ function () {
   function Options() {
     var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 
-    _classCallCheck(this, Options);
+    _classCallCheck$1(this, Options);
 
-    _defineProperty(this, "minFps", 15);
+    _defineProperty$1(this, "minFps", 15);
 
-    _defineProperty(this, "targetFps", 60);
+    _defineProperty$1(this, "targetFps", 60);
 
-    _defineProperty(this, "maxRestartAttempts", Infinity);
+    _defineProperty$1(this, "maxRestartAttempts", Infinity);
 
-    _defineProperty(this, "runTime", Infinity);
+    _defineProperty$1(this, "runTime", Infinity);
 
-    _defineProperty(this, "forceSetTimeout", false);
+    _defineProperty$1(this, "forceSetTimeout", false);
 
     Object.assign(this, options);
   }
@@ -471,7 +479,7 @@ function () {
    */
 
 
-  _createClass(Options, [{
+  _createClass$1(Options, [{
     key: "minFpsCalc",
     get: function get() {
       return Math.floor(1000 / this.minFps);
@@ -493,36 +501,6 @@ function () {
 
   return Options;
 }();
-
-exports["default"] = Options;
-
-});
-
-unwrapExports(Options_1);
-
-var RequestAnimationFrame_1 = createCommonjsModule(function (module, exports) {
-/**
- * Abstract the use of requestAnimationFrame and setTimeout under one name so that Deltaframe itself does 
- * not have to worry about which one to use.
- * 
- * This also uses the requestAnimationFrame and cancelAnimationFrame that are supported by the user's browser 
- * and forces setTimeout if desired.
- * 
- * @since 0.1.0
- */
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var RequestAnimationFrame =
 /*#__PURE__*/
@@ -567,15 +545,15 @@ function () {
    * @default false
    */
   function RequestAnimationFrame() {
-    _classCallCheck(this, RequestAnimationFrame);
+    _classCallCheck$1(this, RequestAnimationFrame);
 
-    _defineProperty(this, "id", 0);
+    _defineProperty$1(this, "id", 0);
 
-    _defineProperty(this, "running", false);
+    _defineProperty$1(this, "running", false);
 
-    _defineProperty(this, "fn", function () {});
+    _defineProperty$1(this, "fn", function () {});
 
-    _defineProperty(this, "usingSetTimeout", false);
+    _defineProperty$1(this, "usingSetTimeout", false);
 
     /**
      * Use the version of requestAnimationFrame that is supported by the user's browser and if none are 
@@ -608,7 +586,7 @@ function () {
    */
 
 
-  _createClass(RequestAnimationFrame, [{
+  _createClass$1(RequestAnimationFrame, [{
     key: "start",
     value: function start(fn, forceSetTimeout) {
       var _this = this;
@@ -705,33 +683,6 @@ function () {
   return RequestAnimationFrame;
 }();
 
-exports["default"] = RequestAnimationFrame;
-
-});
-
-unwrapExports(RequestAnimationFrame_1);
-
-var deltaframe = createCommonjsModule(function (module, exports) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _Options = _interopRequireDefault(Options_1);
-
-var _RequestAnimationFrame = _interopRequireDefault(RequestAnimationFrame_1);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 /**
  * Deltaframe is an animation and game loop manager that makes sure your application
  * is punctual and performant.
@@ -740,6 +691,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
  * 
  * @version 1.0.2
  */
+
 var Deltaframe =
 /*#__PURE__*/
 function () {
@@ -881,37 +833,37 @@ function () {
    * @param {boolean} [options.forceSetTimeout=false] If set to true, Deltaframe will use setTimeout for the loop instead of requestAnimationFrame.
    */
   function Deltaframe(options) {
-    _classCallCheck(this, Deltaframe);
+    _classCallCheck$1(this, Deltaframe);
 
-    _defineProperty(this, "_options", void 0);
+    _defineProperty$1(this, "_options", void 0);
 
-    _defineProperty(this, "_restartAttempts", void 0);
+    _defineProperty$1(this, "_restartAttempts", void 0);
 
-    _defineProperty(this, "_running", void 0);
+    _defineProperty$1(this, "_running", void 0);
 
-    _defineProperty(this, "_paused", void 0);
+    _defineProperty$1(this, "_paused", void 0);
 
-    _defineProperty(this, "_fn", void 0);
+    _defineProperty$1(this, "_fn", void 0);
 
-    _defineProperty(this, "_frame", void 0);
+    _defineProperty$1(this, "_frame", void 0);
 
-    _defineProperty(this, "_time", void 0);
+    _defineProperty$1(this, "_time", void 0);
 
-    _defineProperty(this, "_prevTime", void 0);
+    _defineProperty$1(this, "_prevTime", void 0);
 
-    _defineProperty(this, "_delta", void 0);
+    _defineProperty$1(this, "_delta", void 0);
 
-    _defineProperty(this, "_deltaAverage", void 0);
+    _defineProperty$1(this, "_deltaAverage", void 0);
 
-    _defineProperty(this, "_deltaHistory", void 0);
+    _defineProperty$1(this, "_deltaHistory", void 0);
 
-    _defineProperty(this, "_deltaIndex", void 0);
+    _defineProperty$1(this, "_deltaIndex", void 0);
 
-    _defineProperty(this, "_raf", void 0);
+    _defineProperty$1(this, "_raf", void 0);
 
-    _defineProperty(this, "_hidden", void 0);
+    _defineProperty$1(this, "_hidden", void 0);
 
-    this._options = new _Options["default"](options);
+    this._options = new Options$1(options);
     this._restartAttempts = 0;
     this._running = false;
     this._paused = false;
@@ -925,7 +877,7 @@ function () {
     this._deltaAverage = 0;
     this._deltaHistory = [];
     this._deltaIndex = 0;
-    this._raf = new _RequestAnimationFrame["default"]();
+    this._raf = new RequestAnimationFrame();
     this._hidden = document.hidden;
 
     this._boot();
@@ -939,7 +891,7 @@ function () {
    */
 
 
-  _createClass(Deltaframe, [{
+  _createClass$1(Deltaframe, [{
     key: "start",
 
     /**
@@ -1029,8 +981,8 @@ function () {
     value: function _boot() {
       var _this3 = this;
 
-      document.addEventListener('visibilitychange', function () {
-        return _this3._visibilityChange;
+      document.addEventListener("visibilitychange", function () {
+        _this3._visibilityChange();
       });
     }
     /**
@@ -1098,7 +1050,7 @@ function () {
     key: "_visibilityChange",
     value: function _visibilityChange() {
       var visibility = document.visibilityState;
-      if (visibility === 'visible') this.resume();else if (visibility === 'hidden') this.pause();
+      if (this.isPaused && visibility === 'visible') this.resume();else if (this.isRunning && visibility === 'hidden') this.pause();
     }
   }, {
     key: "timesRestarted",
@@ -1148,12 +1100,6 @@ function () {
 
   return Deltaframe;
 }();
-
-exports["default"] = Deltaframe;
-
-});
-
-var Deltaframe = unwrapExports(deltaframe);
 
 /**
  * Create keybinds easily with single and multi key support
