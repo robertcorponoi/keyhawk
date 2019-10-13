@@ -6,14 +6,10 @@ import KeybindObject from '../interfaces/KeybindObject';
  * or in your own game loop.
  *
  * Keybinds can also have a delay to ensure that a certain amount of time has passed between presses.
- *
- * @version 0.1.0
  */
 export default class Keybind {
     /**
      * The keys that are assigned to this keybind.
-     *
-     * @since 0.1.0
    *
      * @private
      *
@@ -22,8 +18,6 @@ export default class Keybind {
     private _keys;
     /**
      * The callback method to run when this keybind is used.
-     *
-     * @since 0.1.0
    *
    * @private
      *
@@ -36,17 +30,21 @@ export default class Keybind {
      * A delay to set between uses of this keybind in case it shouldn't
      * be able to be spammed.
      *
-     * @since 0.1.0
-     *
      * @property {number}
      *
      * @default 0
      */
     _delay: number;
     /**
-     * The last time that this keybind was used.
+     * A delay to be set before the keybind can even be used at all.
      *
-     * @since 0.1.0
+     * @property {number}
+     *
+     * @default 0
+     */
+    _initialDelay: number;
+    /**
+     * The last time that this keybind was used.
      *
      * @property {number}
      *
@@ -60,15 +58,11 @@ export default class Keybind {
     /**
      * Gets the keys that are a part of this keybind.
      *
-     * @since 0.1.0
-     *
      * @returns {KeybindObject}
      */
     readonly keys: KeybindObject;
     /**
      * Gets the last time that this keybind was used.
-     *
-     * @since 0.1.0
      *
      * @returns {number}
      */
@@ -76,17 +70,21 @@ export default class Keybind {
     /**
      * Sets the delay between keybind uses.
      *
-     * @since 0.1.0
-     *
      * @param {number} ms The time in milliseconds to delay use.
      *
      * @returns {Keybind} Returns this for chaining.
      */
     delay(ms: number): Keybind;
     /**
-     * Sets the callback method that will be run when this keybind is active.
+     * Sets the initial delay before the keybind can be used for the first time.
      *
-     * @since 0.1.0
+     * @param {number} ms The time in milliseconds before the keybind can be used.
+     *
+     * @returns {Keybind} Retursn this for chaining.
+     */
+    initialDelay(ms: number): Keybind;
+    /**
+     * Sets the callback method sthat will be run when this keybind is active.
      *
      * @param {Function} fn The callback method to use.
      *
@@ -96,15 +94,12 @@ export default class Keybind {
     /**
      * Run the action associated with this keybind.
      *
-     * @since 0.1.0
-     *
      * @param {number} time The time that the keybind was used.
      */
     run(time: number): void;
     /**
      * An empty method to use as the default action for the keybind in case no action is added.
      *
-     * @since 0.1.0
      * @private
      */
     private noop;

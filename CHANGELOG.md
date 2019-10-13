@@ -1,3 +1,11 @@
+1.1.3 / 2019-10-12
+==================
+* [FEATURE] Added an initial delay method that allows you to the initial delay before the keybind can be used for the first time.
+
+1.1.2 / 2019-10-12
+==================
+* [FEATURE] Updated all dev dependencies to their latest versions.
+
 1.1.1 / 2019-07-17
 ==================
 * [HOTFIX] Updated all dev dependencies to their latest versions and fixed any security vulnerabilities found in them.

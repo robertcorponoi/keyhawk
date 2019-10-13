@@ -9,17 +9,11 @@ import Deltaframe from 'deltaframe';
 
 /**
  * Create keybinds easily with single and multi key support
- * 
- * @author Robert Corponoi <robertcorponoi@gmail.com>
- * 
- * @version 1.0.5
  */
 export default class Keyhawk {
 
 	/**
 	 * The selected options for Keyhawk.
-	 * 
-	 * @since 1.0.0
 	 * 
 	 * @property {Options}
 	 * 
@@ -30,16 +24,12 @@ export default class Keyhawk {
 	/**
 	 * A list of keys that can be selected to be used in keybinds.
 	 * 
-	 * @since 0.1.0
-	 * 
    * @private
 	 */
   KEY: any = Key;
 
 	/**
 	 * A list of the created keybinds.
-	 * 
-	 * @since 0.1.0
 	 * 
 	 * @property {Array<Keybind>}
    * 
@@ -51,8 +41,6 @@ export default class Keyhawk {
 	 * If you don't want to create your own game loop to check keykind uses on an interval, you opt in to
    * use the Deltaframe package.
 	 * 
-	 * @since 1.0.0
-	 * 
 	 * @property {Deltaframe|null}
    * 
    * @private
@@ -61,8 +49,6 @@ export default class Keyhawk {
 
 	/**
 	 * Keeps track of what keys have been pressed.
-	 * 
-	 * @since 0.1.0
    * 
 	 * @private
 	 * 
@@ -73,8 +59,6 @@ export default class Keyhawk {
   /**
    * Indicates whether using keybinds is currently disabled or not.
    * 
-   * @since 1.0.5
-   * 
    * @private
    * 
    * @property {boolean}
@@ -83,8 +67,6 @@ export default class Keyhawk {
 
   /**
    * The amount of time that keybinds are disabled for, if any.
-   * 
-   * @since 1.0.5
    * 
    * @private
    * 
@@ -107,8 +89,6 @@ export default class Keyhawk {
   /**
    * Setup the keydown and keyup event listeners and also initialize Deltaframe if it is being used.
    * 
-   * @since 0.1.0
-   * 
    * @private
    */
   private boot() {
@@ -130,13 +110,11 @@ export default class Keyhawk {
 	/**
 	 * Creates a new keybind with the specified keys.
 	 * 
-	 * @since 0.1.0
-	 * 
 	 * @param {...string} keys One or more keys from the `KEYS` property to attach to this keybind.
 	 * 
 	 * @returns {Keybind} Returns the newly created keybind.
 	 */
-  keybind(...keys: Array<string>) {
+  keybind(...keys: Array<string>): (Keybind | undefined) {
 
     if (!keys) {
 
@@ -150,7 +128,7 @@ export default class Keyhawk {
 
     for (const key of keys) keyObj[key] = true;
 
-    const keybind = new Keybind(keyObj);
+    const keybind: Keybind = new Keybind(keyObj);
 
     this.keybinds.push(keybind);
 
@@ -160,8 +138,6 @@ export default class Keyhawk {
 
 	/**
 	 * Checks to see which key conditions are currently being met and runs the keybind's attached callback method.
-	 * 
-	 * @since 0.1.0
    * 
    * @param {number} time The current timestamp which is used to check for delays and is passed to the keybind's callback method.
 	 */
@@ -169,9 +145,11 @@ export default class Keyhawk {
 
     this.keybinds.forEach(o => {
 
-      const isActive = Object.entries(o.keys).every(arr => this.pressed[arr[0]] == arr[1]);
+      const isActive: boolean = Object.entries(o.keys).every(arr => this.pressed[arr[0]] == arr[1]);
 
-      const isTime = time - o._lastUsed > o._delay;
+      const isPastInitialDelay: boolean = time > o._initialDelay;
+
+      const isTime: boolean = time - o._lastUsed > o._delay;
 
       if (this.disabled) {
 
@@ -181,7 +159,7 @@ export default class Keyhawk {
 
       }
 
-      if (isActive && isTime) o.run(time);
+      if (isActive && isPastInitialDelay && isTime) o.run(time);
 
     });
 
@@ -189,8 +167,6 @@ export default class Keyhawk {
 
   /**
    * Disables the use of all keybinds until enable is called or until the wait time has expired if it is provided.
-   * 
-   * @since 1.0.5
    * 
    * @param {number} [lengthOfTime=Infinity] An optional amount of time to wait until keybinds are automatically enabled again. 
    */
@@ -205,8 +181,6 @@ export default class Keyhawk {
   /**
    * If no end time is passed when calling the `disable` method, this method has to be called to enable the use of
    * keybinds again.
-   * 
-   * @since 1.0.5 
    */
   enable() {
 
@@ -216,8 +190,6 @@ export default class Keyhawk {
 
 	/**
 	 * When a key is pressed, add it to the `pressed` Object if it doesn't already exist and set it to `true`.
-	 * 
-	 * @since 0.1.0
    * 
 	 * @private
 	 * 
@@ -235,8 +207,6 @@ export default class Keyhawk {
 
 	/**
 	 * When a key is released, set its property in the `pressed` object to `false`.
-	 * 
-	 * @since 0.1.0
    * 
 	 * @private
 	 * 
@@ -255,8 +225,6 @@ export default class Keyhawk {
   /**
    * Resets both disabled properties, disabled to false and disabled time to 0 when keybinds are enabled
    * again after being disabled.
-   * 
-   * @since 1.0.5
    * 
    * @private
    */

@@ -9,15 +9,11 @@ import KeybindObject from '../interfaces/KeybindObject';
  * or in your own game loop.
  * 
  * Keybinds can also have a delay to ensure that a certain amount of time has passed between presses.
- * 
- * @version 0.1.0
  */
 export default class Keybind {
 
 	/**
 	 * The keys that are assigned to this keybind.
-	 * 
-	 * @since 0.1.0
    * 
 	 * @private
 	 * 
@@ -27,8 +23,6 @@ export default class Keybind {
 
 	/**
 	 * The callback method to run when this keybind is used.
-	 * 
-	 * @since 0.1.0
    * 
    * @private
 	 * 
@@ -42,18 +36,23 @@ export default class Keybind {
 	 * A delay to set between uses of this keybind in case it shouldn't
 	 * be able to be spammed.
 	 * 
-	 * @since 0.1.0
-	 * 
 	 * @property {number}
 	 * 
 	 * @default 0
 	 */
-	_delay: number = 0;
+  _delay: number = 0;
+  
+  /**
+   * A delay to be set before the keybind can even be used at all.
+   * 
+   * @property {number}
+   * 
+   * @default 0
+   */
+  _initialDelay: number = 0;
 
 	/**
 	 * The last time that this keybind was used.
-	 * 
-	 * @since 0.1.0
 	 * 
 	 * @property {number}
 	 * 
@@ -73,8 +72,6 @@ export default class Keybind {
 	/**
 	 * Gets the keys that are a part of this keybind.
 	 * 
-	 * @since 0.1.0
-	 * 
 	 * @returns {KeybindObject}
 	 */
 	get keys(): KeybindObject {
@@ -86,8 +83,6 @@ export default class Keybind {
 	/**
 	 * Gets the last time that this keybind was used.
 	 * 
-	 * @since 0.1.0
-	 * 
 	 * @returns {number}
 	 */
 	get lastUsed(): number {
@@ -98,8 +93,6 @@ export default class Keybind {
 
 	/**
 	 * Sets the delay between keybind uses.
-	 * 
-	 * @since 0.1.0
 	 * 
 	 * @param {number} ms The time in milliseconds to delay use.
 	 * 
@@ -113,12 +106,25 @@ export default class Keybind {
 
 		return this;
 
-	}
+  }
+  
+  /**
+   * Sets the initial delay before the keybind can be used for the first time.
+   * 
+   * @param {number} ms The time in milliseconds before the keybind can be used.
+   * 
+   * @returns {Keybind} Retursn this for chaining.
+   */
+  initialDelay(ms: number): Keybind {
+
+    this._initialDelay = ms;
+
+    return this;
+
+  }
 
 	/**
-	 * Sets the callback method that will be run when this keybind is active.
-	 * 
-	 * @since 0.1.0
+	 * Sets the callback method sthat will be run when this keybind is active.
 	 * 
 	 * @param {Function} fn The callback method to use.
 	 * 
@@ -135,8 +141,6 @@ export default class Keybind {
 	/**
 	 * Run the action associated with this keybind.
 	 * 
-	 * @since 0.1.0
-	 * 
 	 * @param {number} time The time that the keybind was used.
 	 */
 	run(time: number) {
@@ -150,7 +154,6 @@ export default class Keybind {
 	/**
 	 * An empty method to use as the default action for the keybind in case no action is added.
 	 * 
-	 * @since 0.1.0
 	 * @private
 	 */
 	private noop() { }
