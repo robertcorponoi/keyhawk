@@ -106,7 +106,19 @@ function hello() {
 const sayHello = keyhawk.keybind(keyhawk.KEY.A).action(hello).delay(5000);
 ```
 
-## **Disable/Enable**
+### **initialDelay**
+
+Sets the initial delay before the keybind can be used for the first time
+
+| param 	| type   	| description                                              	| default 	|
+|-------	|--------	|----------------------------------------------------------	|---------	|
+| ms    	| number 	| The time in milliseconds before the keybind can be used. 	|         	|
+
+```js
+keyhawk.initialDelay(5000);
+```
+
+### **Disable/Enable**
 
 To diable the use of any and all keybinds you can call the disable method.
 

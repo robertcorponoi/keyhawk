@@ -80,6 +80,26 @@ describe('Using Keybinds', () => {
 		}, 1000);
 
   });
+
+  it('should run the function associated with the keybind after the initial delay', function (done) {
+
+    this.timeout(7000);
+
+		const spy = sinon.spy(testTask);
+
+		const crouchJump = keyhawk.keybind(keyhawk.KEY.SPACE, keyhawk.KEY.CTRL).action(spy).initialDelay(5000);
+
+		simKey(' ');
+		simKey('Control');
+
+		setTimeout(() => {
+
+      chai.expect(crouchJump._lastUsed).to.be.greaterThan(0);
+			done();
+
+		}, 6000);
+
+  });
   
   it('should disable keybinds and not check for keybinds even when they are pressed', (done) => {
 
@@ -138,7 +158,7 @@ describe('Using Keybinds', () => {
 
     setTimeout(() => {
 
-      chai.expect(crouchJump._lastUsed).to.be.lessThan(10000);
+      chai.expect(crouchJump._lastUsed).to.be.lessThan(20000);
 
       done();
 

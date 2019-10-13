@@ -37,8 +37,6 @@ function _defineProperty(obj, key, value) {
 
 /**
  * Contains a list of keys that can be used to create keybinds.
- * 
- * @version 0.1.0
  */
 
 var Key = {
@@ -178,16 +176,12 @@ var Key = {
  * or in your own game loop.
  * 
  * Keybinds can also have a delay to ensure that a certain amount of time has passed between presses.
- * 
- * @version 0.1.0
  */
 var Keybind =
 /*#__PURE__*/
 function () {
   /**
    * The keys that are assigned to this keybind.
-   * 
-   * @since 0.1.0
     * 
    * @private
    * 
@@ -196,8 +190,6 @@ function () {
 
   /**
    * The callback method to run when this keybind is used.
-   * 
-   * @since 0.1.0
     * 
     * @private
    * 
@@ -210,7 +202,13 @@ function () {
    * A delay to set between uses of this keybind in case it shouldn't
    * be able to be spammed.
    * 
-   * @since 0.1.0
+   * @property {number}
+   * 
+   * @default 0
+   */
+
+  /**
+   * A delay to be set before the keybind can even be used at all.
    * 
    * @property {number}
    * 
@@ -219,8 +217,6 @@ function () {
 
   /**
    * The last time that this keybind was used.
-   * 
-   * @since 0.1.0
    * 
    * @property {number}
    * 
@@ -239,14 +235,14 @@ function () {
 
     _defineProperty(this, "_delay", 0);
 
+    _defineProperty(this, "_initialDelay", 0);
+
     _defineProperty(this, "_lastUsed", 0);
 
     this._keys = keys;
   }
   /**
    * Gets the keys that are a part of this keybind.
-   * 
-   * @since 0.1.0
    * 
    * @returns {KeybindObject}
    */
@@ -258,8 +254,6 @@ function () {
     /**
      * Sets the delay between keybind uses.
      * 
-     * @since 0.1.0
-     * 
      * @param {number} ms The time in milliseconds to delay use.
      * 
      * @returns {Keybind} Returns this for chaining.
@@ -270,9 +264,21 @@ function () {
       return this;
     }
     /**
-     * Sets the callback method that will be run when this keybind is active.
+     * Sets the initial delay before the keybind can be used for the first time.
      * 
-     * @since 0.1.0
+     * @param {number} ms The time in milliseconds before the keybind can be used.
+     * 
+     * @returns {Keybind} Retursn this for chaining.
+     */
+
+  }, {
+    key: "initialDelay",
+    value: function initialDelay(ms) {
+      this._initialDelay = ms;
+      return this;
+    }
+    /**
+     * Sets the callback method sthat will be run when this keybind is active.
      * 
      * @param {Function} fn The callback method to use.
      * 
@@ -288,8 +294,6 @@ function () {
     /**
      * Run the action associated with this keybind.
      * 
-     * @since 0.1.0
-     * 
      * @param {number} time The time that the keybind was used.
      */
 
@@ -303,7 +307,6 @@ function () {
     /**
      * An empty method to use as the default action for the keybind in case no action is added.
      * 
-     * @since 0.1.0
      * @private
      */
 
@@ -317,8 +320,6 @@ function () {
     }
     /**
      * Gets the last time that this keybind was used.
-     * 
-     * @since 0.1.0
      * 
      * @returns {number}
      */
@@ -339,8 +340,6 @@ var Options =
  * 
  * If you would like to use your own game loop or even just rather use a simple debounce method, 
   * you can set this to false.
- * 
- * @since 0.1.0
  * 
  * @property {boolean}
  * 
@@ -1103,10 +1102,6 @@ function () {
 
 /**
  * Create keybinds easily with single and multi key support
- * 
- * @author Robert Corponoi <robertcorponoi@gmail.com>
- * 
- * @version 1.0.5
  */
 
 var Keyhawk =
@@ -1114,8 +1109,6 @@ var Keyhawk =
 function () {
   /**
    * The selected options for Keyhawk.
-   * 
-   * @since 1.0.0
    * 
    * @property {Options}
    * 
@@ -1125,15 +1118,11 @@ function () {
   /**
    * A list of keys that can be selected to be used in keybinds.
    * 
-   * @since 0.1.0
-   * 
     * @private
    */
 
   /**
    * A list of the created keybinds.
-   * 
-   * @since 0.1.0
    * 
    * @property {Array<Keybind>}
     * 
@@ -1144,8 +1133,6 @@ function () {
    * If you don't want to create your own game loop to check keykind uses on an interval, you opt in to
     * use the Deltaframe package.
    * 
-   * @since 1.0.0
-   * 
    * @property {Deltaframe|null}
     * 
     * @private
@@ -1153,8 +1140,6 @@ function () {
 
   /**
    * Keeps track of what keys have been pressed.
-   * 
-   * @since 0.1.0
     * 
    * @private
    * 
@@ -1164,8 +1149,6 @@ function () {
   /**
    * Indicates whether using keybinds is currently disabled or not.
    * 
-   * @since 1.0.5
-   * 
    * @private
    * 
    * @property {boolean}
@@ -1173,8 +1156,6 @@ function () {
 
   /**
    * The amount of time that keybinds are disabled for, if any.
-   * 
-   * @since 1.0.5
    * 
    * @private
    * 
@@ -1210,8 +1191,6 @@ function () {
   /**
    * Setup the keydown and keyup event listeners and also initialize Deltaframe if it is being used.
    * 
-   * @since 0.1.0
-   * 
    * @private
    */
 
@@ -1237,8 +1216,6 @@ function () {
     }
     /**
      * Creates a new keybind with the specified keys.
-     * 
-     * @since 0.1.0
      * 
      * @param {...string} keys One or more keys from the `KEYS` property to attach to this keybind.
      * 
@@ -1270,8 +1247,6 @@ function () {
     }
     /**
      * Checks to see which key conditions are currently being met and runs the keybind's attached callback method.
-     * 
-     * @since 0.1.0
       * 
       * @param {number} time The current timestamp which is used to check for delays and is passed to the keybind's callback method.
      */
@@ -1285,19 +1260,18 @@ function () {
         var isActive = Object.entries(o.keys).every(function (arr) {
           return _this2.pressed[arr[0]] == arr[1];
         });
+        var isPastInitialDelay = time > o._initialDelay;
         var isTime = time - o._lastUsed > o._delay;
 
         if (_this2.disabled) {
           if (time < time + _this2.disabledTime) return;else _this2.resetDisabled();
         }
 
-        if (isActive && isTime) o.run(time);
+        if (isActive && isPastInitialDelay && isTime) o.run(time);
       });
     }
     /**
      * Disables the use of all keybinds until enable is called or until the wait time has expired if it is provided.
-     * 
-     * @since 1.0.5
      * 
      * @param {number} [lengthOfTime=Infinity] An optional amount of time to wait until keybinds are automatically enabled again. 
      */
@@ -1312,8 +1286,6 @@ function () {
     /**
      * If no end time is passed when calling the `disable` method, this method has to be called to enable the use of
      * keybinds again.
-     * 
-     * @since 1.0.5 
      */
 
   }, {
@@ -1323,8 +1295,6 @@ function () {
     }
     /**
      * When a key is pressed, add it to the `pressed` Object if it doesn't already exist and set it to `true`.
-     * 
-     * @since 0.1.0
       * 
      * @private
      * 
@@ -1340,8 +1310,6 @@ function () {
     }
     /**
      * When a key is released, set its property in the `pressed` object to `false`.
-     * 
-     * @since 0.1.0
       * 
      * @private
      * 
@@ -1358,8 +1326,6 @@ function () {
     /**
      * Resets both disabled properties, disabled to false and disabled time to 0 when keybinds are enabled
      * again after being disabled.
-     * 
-     * @since 1.0.5
      * 
      * @private
      */

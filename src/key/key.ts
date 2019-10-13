@@ -2,8 +2,6 @@
 
 /**
  * Contains a list of keys that can be used to create keybinds.
- * 
- * @version 0.1.0
  */
 export default {
 
