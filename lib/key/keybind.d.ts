@@ -60,13 +60,13 @@ export default class Keybind {
      *
      * @returns {KeybindObject}
      */
-    readonly keys: KeybindObject;
+    get keys(): KeybindObject;
     /**
      * Gets the last time that this keybind was used.
      *
      * @returns {number}
      */
-    readonly lastUsed: number;
+    get lastUsed(): number;
     /**
      * Sets the delay between keybind uses.
      *

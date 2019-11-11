@@ -1,3 +1,8 @@
+1.1.4 / 2019-11-10
+==================
+* [MISC] Updated dependencies to their latest versions.
+* [MISC] Added badges to README.
+
 1.1.3 / 2019-10-12
 ==================
 * [FEATURE] Added an initial delay method that allows you to the initial delay before the keybind can be used for the first time.

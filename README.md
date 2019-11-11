@@ -7,10 +7,14 @@
 <p align="center">Keyhawk is used to create and manage keybinds for your JavaScript game.<p>
 
 <div align="center">
-  <a href="#"><img src="https://badge.fury.io/js/keyhawk.svg" alt="npm version" height="18"></a>
-  <a href="#"><img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build" height="18"></a>
-  <a href="#"><img src="https://img.shields.io/github/issues/robertcorponoi/keyhawk.svg" alt="issues" height="18"></a>
-  <a href="#"><img src="https://img.shields.io/github/license/robertcorponoi/keyhawk.svg" alt="license" height="18"></a>
+
+[![NPM version](https://img.shields.io/npm/v/keyhawk.svg?style=flat)](https://www.npmjs.com/package/keyhawk)
+[![Known Vulnerabilities](https://snyk.io/test/github/robertcorponoi/keyhawk/badge.svg)](https://snyk.io/test/github/robertcorponoi/keyhawk)
+[![NPM downloads](https://img.shields.io/npm/dm/keyhawk.svg?style=flat)](https://www.npmjs.com/package/keyhawk)
+<a href="https://badge.fury.io/js/keyhawk"><img src="https://img.shields.io/github/issues/robertcorponoi/keyhawk.svg" alt="issues" height="18"></a>
+<a href="https://badge.fury.io/js/keyhawk"><img src="https://img.shields.io/github/license/robertcorponoi/keyhawk.svg" alt="license" height="18"></a>
+[![Gitter](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/robertcorponoi)
+
 </div>
 
 Keyhawk lets you easily and quickly create keybinds for your JavaScript games. Keybinds are creating by assigning one or more keys to be bound and then passing a method that should be run when the keybind is active (the keys for it are pressed) and an optional delay that can be used to limit how often the keybind can be used.
