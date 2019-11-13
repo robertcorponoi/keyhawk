@@ -10,6 +10,7 @@
 
 [![NPM version](https://img.shields.io/npm/v/keyhawk.svg?style=flat)](https://www.npmjs.com/package/keyhawk)
 [![Known Vulnerabilities](https://snyk.io/test/github/robertcorponoi/keyhawk/badge.svg)](https://snyk.io/test/github/robertcorponoi/keyhawk)
+![npm](https://img.shields.io/npm/dt/keyhawk)
 [![NPM downloads](https://img.shields.io/npm/dm/keyhawk.svg?style=flat)](https://www.npmjs.com/package/keyhawk)
 <a href="https://badge.fury.io/js/keyhawk"><img src="https://img.shields.io/github/issues/robertcorponoi/keyhawk.svg" alt="issues" height="18"></a>
 <a href="https://badge.fury.io/js/keyhawk"><img src="https://img.shields.io/github/license/robertcorponoi/keyhawk.svg" alt="license" height="18"></a>

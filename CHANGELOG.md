@@ -1,3 +1,8 @@
+1.1.5 / 2019-11-12
+==================
+* [MISC] Added total downloads badges to README.
+* [HOTFIX] Added test case for no game loop.
+
 1.1.4 / 2019-11-10
 ==================
 * [MISC] Updated dependencies to their latest versions.
