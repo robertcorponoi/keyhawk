@@ -1,3 +1,11 @@
+1.2.0 / 2019-12-11
+==================
+* [FEATURE] Added getters for disabled and disabledTime.
+* [MISC] Updated all private methods to use _ for consistency.
+* [MISC] Uncommented tests so they would show up when run, must have forgot to uncomment during previous testing.
+* [MISC] Updated dependencies to their latest versions.
+* [MISC] Updated documentation.
+
 1.1.5 / 2019-11-12
 ==================
 * [MISC] Added total downloads badges to README.

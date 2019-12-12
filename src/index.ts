@@ -19,7 +19,7 @@ export default class Keyhawk {
 	 * 
    * @private
 	 */
-  private options: Options;
+  private _options: Options;
 
 	/**
 	 * A list of keys that can be selected to be used in keybinds.
@@ -35,7 +35,7 @@ export default class Keyhawk {
    * 
    * @private
 	 */
-  private keybinds: Array<Keybind> = [];
+  private _keybinds: Array<Keybind> = [];
 
 	/**
 	 * If you don't want to create your own game loop to check keykind uses on an interval, you opt in to
@@ -45,7 +45,7 @@ export default class Keyhawk {
    * 
    * @private
 	 */
-  private loop: (Deltaframe | null) = null;
+  private _loop: (Deltaframe | null) = null;
 
 	/**
 	 * Keeps track of what keys have been pressed.
@@ -54,7 +54,7 @@ export default class Keyhawk {
 	 * 
 	 * @property {Object}
 	 */
-  private pressed: any = {};
+  private _pressed: any = {};
 
   /**
    * Indicates whether using keybinds is currently disabled or not.
@@ -63,7 +63,7 @@ export default class Keyhawk {
    * 
    * @property {boolean}
    */
-  private disabled: boolean = false;
+  private _disabled: boolean = false;
 
   /**
    * The amount of time that keybinds are disabled for, if any.
@@ -72,7 +72,7 @@ export default class Keyhawk {
    * 
    * @property {number} 
    */
-  private disabledTime: number = 0;
+  private _disabledTime: number = 0;
   
 	/**
 	 * @param {Object} [options]
@@ -80,28 +80,42 @@ export default class Keyhawk {
 	 */
   constructor(options: Object = {}) {
 
-    this.options = new Options(options);
+    this._options = new Options(options);
 
-    this.boot();
+    this._boot();
 
   }
+
+  /**
+   * Returns whether keybinds are currently disabled or not.
+   * 
+   * @returns {boolean}
+   */
+  get disabled(): boolean { return this._disabled; }
+
+  /**
+   * Returns the disabled time, if it was set.
+   * 
+   * @returns {number}
+   */
+  get disabledTime(): number { return this._disabledTime; }
 
   /**
    * Setup the keydown and keyup event listeners and also initialize Deltaframe if it is being used.
    * 
    * @private
    */
-  private boot() {
+  private _boot() {
 
-    window.addEventListener('keydown', (ev) => this.keydown(ev));
+    window.addEventListener('keydown', (ev) => this._keydown(ev));
 
-    window.addEventListener('keyup', (ev) => this.keyup(ev));
+    window.addEventListener('keyup', (ev) => this._keyup(ev));
 
-    if (this.options.useLoop) {
+    if (this._options.useLoop) {
 
-      this.loop = new Deltaframe({});
+      this._loop = new Deltaframe({});
 
-      this.loop.start((time: number) => this.check(time));
+      this._loop.start((time: number) => this.check(time));
 
     }
 
@@ -130,7 +144,7 @@ export default class Keyhawk {
 
     const keybind: Keybind = new Keybind(keyObj);
 
-    this.keybinds.push(keybind);
+    this._keybinds.push(keybind);
 
     return keybind;
 
@@ -143,19 +157,19 @@ export default class Keyhawk {
 	 */
   check(time: number) {
 
-    this.keybinds.forEach(o => {
+    this._keybinds.forEach(o => {
 
-      const isActive: boolean = Object.entries(o.keys).every(arr => this.pressed[arr[0]] == arr[1]);
+      const isActive: boolean = Object.entries(o.keys).every(arr => this._pressed[arr[0]] == arr[1]);
 
       const isPastInitialDelay: boolean = time > o._initialDelay;
 
       const isTime: boolean = time - o._lastUsed > o._delay;
 
-      if (this.disabled) {
+      if (this._disabled) {
 
-        if (time < time + this.disabledTime) return;
+        if (time < time + this._disabledTime) return;
 
-        else this.resetDisabled();
+        else this._resetDisabled();
 
       }
 
@@ -172,9 +186,9 @@ export default class Keyhawk {
    */
   disable(lengthOfTime: number = Infinity) {
 
-    this.disabled = true;
+    this._disabled = true;
 
-    this.disabledTime =  lengthOfTime;
+    this._disabledTime =  lengthOfTime;
 
   }
 
@@ -184,7 +198,7 @@ export default class Keyhawk {
    */
   enable() {
 
-    this.resetDisabled();
+    this._resetDisabled();
 
   }
 
@@ -195,9 +209,9 @@ export default class Keyhawk {
 	 * 
 	 * @param {KeyboardEvent} event The event generated from the keypress.
 	 */
-  private keydown(event: KeyboardEvent) {
+  private _keydown(event: KeyboardEvent) {
 
-    this.pressed[event.key.toLowerCase()] = true;
+    this._pressed[event.key.toLowerCase()] = true;
 
     event.preventDefault();
 
@@ -212,9 +226,9 @@ export default class Keyhawk {
 	 * 
 	 * @param {KeyboardEvent} event The event generated from the keypress.
 	 */
-  private keyup(event: KeyboardEvent) {
+  private _keyup(event: KeyboardEvent) {
 
-    this.pressed[event.key.toLowerCase()] = false;
+    this._pressed[event.key.toLowerCase()] = false;
 
     event.preventDefault();
 
@@ -228,11 +242,11 @@ export default class Keyhawk {
    * 
    * @private
    */
-  private resetDisabled() {
+  private _resetDisabled() {
 
-    this.disabled = false
+    this._disabled = false
     
-    this.disabledTime = 0;
+    this._disabledTime = 0;
 
   }
 

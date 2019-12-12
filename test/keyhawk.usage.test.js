@@ -18,7 +18,7 @@ describe('Using Keybinds', () => {
 
 		setTimeout(function () {
 
-			chai.expect(moveLeft._lastUsed).to.be.greaterThan(0) && chai.expect(keyhawk.pressed).to.deep.equal({ a: true });
+			chai.expect(moveLeft._lastUsed).to.be.greaterThan(0) && chai.expect(keyhawk._pressed).to.deep.equal({ a: true });
 
 			done();
 
@@ -35,7 +35,7 @@ describe('Using Keybinds', () => {
 
 		setTimeout(function () {
 
-			chai.expect(crouchJump._lastUsed).to.be.greaterThan(0) && chai.expect(keyhawk.pressed).to.deep.equal({ ' ': true, 'control': true });
+			chai.expect(crouchJump._lastUsed).to.be.greaterThan(0) && chai.expect(keyhawk._pressed).to.deep.equal({ ' ': true, 'control': true });
 
 			done();
 

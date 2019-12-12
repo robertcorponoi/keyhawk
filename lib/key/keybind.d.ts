@@ -102,5 +102,5 @@ export default class Keybind {
      *
      * @private
      */
-    private noop;
+    private _noop;
 }

@@ -29,7 +29,7 @@ describe('Using a Custom Game Loop', () => {
 
 		setTimeout(() => {
 
-			chai.expect(keyhawk.pressed[' ']).to.be.true && chai.expect(keyhawk.pressed['control']).to.be.true;
+			chai.expect(keyhawk._pressed[' ']).to.be.true && chai.expect(keyhawk._pressed['control']).to.be.true;
 
 			done();
 

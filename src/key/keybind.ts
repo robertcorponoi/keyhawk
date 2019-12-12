@@ -30,7 +30,7 @@ export default class Keybind {
 	 * 
 	 * @default this.noop
 	 */
-	private _action: Function = this.noop;
+	private _action: Function = this._noop;
 
 	/**
 	 * A delay to set between uses of this keybind in case it shouldn't
@@ -74,22 +74,14 @@ export default class Keybind {
 	 * 
 	 * @returns {KeybindObject}
 	 */
-	get keys(): KeybindObject {
-
-		return this._keys;
-
-	}
+	get keys(): KeybindObject { return this._keys; }
 
 	/**
 	 * Gets the last time that this keybind was used.
 	 * 
 	 * @returns {number}
 	 */
-	get lastUsed(): number {
-
-		return this._lastUsed;
-
-	}
+	get lastUsed(): number { return this._lastUsed; }
 
 	/**
 	 * Sets the delay between keybind uses.
@@ -156,6 +148,6 @@ export default class Keybind {
 	 * 
 	 * @private
 	 */
-	private noop() { }
+	private _noop() { }
 
 }

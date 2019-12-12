@@ -10,7 +10,7 @@ export default class Keyhawk {
      *
    * @private
      */
-    private options;
+    private _options;
     /**
      * A list of keys that can be selected to be used in keybinds.
      *
@@ -24,7 +24,7 @@ export default class Keyhawk {
    *
    * @private
      */
-    private keybinds;
+    private _keybinds;
     /**
      * If you don't want to create your own game loop to check keykind uses on an interval, you opt in to
    * use the Deltaframe package.
@@ -33,7 +33,7 @@ export default class Keyhawk {
    *
    * @private
      */
-    private loop;
+    private _loop;
     /**
      * Keeps track of what keys have been pressed.
    *
@@ -41,7 +41,7 @@ export default class Keyhawk {
      *
      * @property {Object}
      */
-    private pressed;
+    private _pressed;
     /**
      * Indicates whether using keybinds is currently disabled or not.
      *
@@ -49,7 +49,7 @@ export default class Keyhawk {
      *
      * @property {boolean}
      */
-    private disabled;
+    private _disabled;
     /**
      * The amount of time that keybinds are disabled for, if any.
      *
@@ -57,18 +57,30 @@ export default class Keyhawk {
      *
      * @property {number}
      */
-    private disabledTime;
+    private _disabledTime;
     /**
      * @param {Object} [options]
      * @param {boolean} [options.useLoop=true] By default Keyhawk will use the Deltaframe module to handle the checking of keybind uses. If you would like to use your own game loop or even just rather use a simple debounce method, you can set this to false.
      */
     constructor(options?: Object);
     /**
+     * Returns whether keybinds are currently disabled or not.
+     *
+     * @returns {boolean}
+     */
+    get disabled(): boolean;
+    /**
+     * Returns the disabled time, if it was set.
+     *
+     * @returns {number}
+     */
+    get disabledTime(): number;
+    /**
      * Setup the keydown and keyup event listeners and also initialize Deltaframe if it is being used.
      *
      * @private
      */
-    private boot;
+    private _boot;
     /**
      * Creates a new keybind with the specified keys.
      *
@@ -101,7 +113,7 @@ export default class Keyhawk {
      *
      * @param {KeyboardEvent} event The event generated from the keypress.
      */
-    private keydown;
+    private _keydown;
     /**
      * When a key is released, set its property in the `pressed` object to `false`.
    *
@@ -109,12 +121,12 @@ export default class Keyhawk {
      *
      * @param {KeyboardEvent} event The event generated from the keypress.
      */
-    private keyup;
+    private _keyup;
     /**
      * Resets both disabled properties, disabled to false and disabled time to 0 when keybinds are enabled
      * again after being disabled.
      *
      * @private
      */
-    private resetDisabled;
+    private _resetDisabled;
 }

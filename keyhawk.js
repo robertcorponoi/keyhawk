@@ -231,7 +231,7 @@ function () {
 
     _defineProperty(this, "_keys", void 0);
 
-    _defineProperty(this, "_action", this.noop);
+    _defineProperty(this, "_action", this._noop);
 
     _defineProperty(this, "_delay", 0);
 
@@ -311,8 +311,8 @@ function () {
      */
 
   }, {
-    key: "noop",
-    value: function noop() {}
+    key: "_noop",
+    value: function _noop() {}
   }, {
     key: "keys",
     get: function get() {
@@ -1171,45 +1171,53 @@ function () {
 
     _classCallCheck(this, Keyhawk);
 
-    _defineProperty(this, "options", void 0);
+    _defineProperty(this, "_options", void 0);
 
     _defineProperty(this, "KEY", Key);
 
-    _defineProperty(this, "keybinds", []);
+    _defineProperty(this, "_keybinds", []);
 
-    _defineProperty(this, "loop", null);
+    _defineProperty(this, "_loop", null);
 
-    _defineProperty(this, "pressed", {});
+    _defineProperty(this, "_pressed", {});
 
-    _defineProperty(this, "disabled", false);
+    _defineProperty(this, "_disabled", false);
 
-    _defineProperty(this, "disabledTime", 0);
+    _defineProperty(this, "_disabledTime", 0);
 
-    this.options = new Options(options);
-    this.boot();
+    this._options = new Options(options);
+
+    this._boot();
   }
   /**
-   * Setup the keydown and keyup event listeners and also initialize Deltaframe if it is being used.
+   * Returns whether keybinds are currently disabled or not.
    * 
-   * @private
+   * @returns {boolean}
    */
 
 
   _createClass(Keyhawk, [{
-    key: "boot",
-    value: function boot() {
+    key: "_boot",
+
+    /**
+     * Setup the keydown and keyup event listeners and also initialize Deltaframe if it is being used.
+     * 
+     * @private
+     */
+    value: function _boot() {
       var _this = this;
 
       window.addEventListener('keydown', function (ev) {
-        return _this.keydown(ev);
+        return _this._keydown(ev);
       });
       window.addEventListener('keyup', function (ev) {
-        return _this.keyup(ev);
+        return _this._keyup(ev);
       });
 
-      if (this.options.useLoop) {
-        this.loop = new Deltaframe({});
-        this.loop.start(function (time) {
+      if (this._options.useLoop) {
+        this._loop = new Deltaframe({});
+
+        this._loop.start(function (time) {
           return _this.check(time);
         });
       }
@@ -1242,7 +1250,9 @@ function () {
       }
 
       var keybind = new Keybind(keyObj);
-      this.keybinds.push(keybind);
+
+      this._keybinds.push(keybind);
+
       return keybind;
     }
     /**
@@ -1256,15 +1266,15 @@ function () {
     value: function check(time) {
       var _this2 = this;
 
-      this.keybinds.forEach(function (o) {
+      this._keybinds.forEach(function (o) {
         var isActive = Object.entries(o.keys).every(function (arr) {
-          return _this2.pressed[arr[0]] == arr[1];
+          return _this2._pressed[arr[0]] == arr[1];
         });
         var isPastInitialDelay = time > o._initialDelay;
         var isTime = time - o._lastUsed > o._delay;
 
-        if (_this2.disabled) {
-          if (time < time + _this2.disabledTime) return;else _this2.resetDisabled();
+        if (_this2._disabled) {
+          if (time < time + _this2._disabledTime) return;else _this2._resetDisabled();
         }
 
         if (isActive && isPastInitialDelay && isTime) o.run(time);
@@ -1280,8 +1290,8 @@ function () {
     key: "disable",
     value: function disable() {
       var lengthOfTime = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : Infinity;
-      this.disabled = true;
-      this.disabledTime = lengthOfTime;
+      this._disabled = true;
+      this._disabledTime = lengthOfTime;
     }
     /**
      * If no end time is passed when calling the `disable` method, this method has to be called to enable the use of
@@ -1291,7 +1301,7 @@ function () {
   }, {
     key: "enable",
     value: function enable() {
-      this.resetDisabled();
+      this._resetDisabled();
     }
     /**
      * When a key is pressed, add it to the `pressed` Object if it doesn't already exist and set it to `true`.
@@ -1302,9 +1312,9 @@ function () {
      */
 
   }, {
-    key: "keydown",
-    value: function keydown(event) {
-      this.pressed[event.key.toLowerCase()] = true;
+    key: "_keydown",
+    value: function _keydown(event) {
+      this._pressed[event.key.toLowerCase()] = true;
       event.preventDefault();
       return;
     }
@@ -1317,9 +1327,9 @@ function () {
      */
 
   }, {
-    key: "keyup",
-    value: function keyup(event) {
-      this.pressed[event.key.toLowerCase()] = false;
+    key: "_keyup",
+    value: function _keyup(event) {
+      this._pressed[event.key.toLowerCase()] = false;
       event.preventDefault();
       return;
     }
@@ -1331,10 +1341,26 @@ function () {
      */
 
   }, {
-    key: "resetDisabled",
-    value: function resetDisabled() {
-      this.disabled = false;
-      this.disabledTime = 0;
+    key: "_resetDisabled",
+    value: function _resetDisabled() {
+      this._disabled = false;
+      this._disabledTime = 0;
+    }
+  }, {
+    key: "disabled",
+    get: function get() {
+      return this._disabled;
+    }
+    /**
+     * Returns the disabled time, if it was set.
+     * 
+     * @returns {number}
+     */
+
+  }, {
+    key: "disabledTime",
+    get: function get() {
+      return this._disabledTime;
     }
   }]);
 

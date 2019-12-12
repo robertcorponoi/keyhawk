@@ -20,7 +20,7 @@ describe('Creating Keybinds', () => {
 
 		setTimeout(function () {
 
-			chai.expect(keyhawk.pressed).to.deep.equal({ ' ': true, w: true, 7: true });
+			chai.expect(keyhawk._pressed).to.deep.equal({ ' ': true, w: true, 7: true });
 
 			done();
 
@@ -42,7 +42,7 @@ describe('Creating Keybinds', () => {
 
 		setTimeout(function () {
 
-			chai.expect(keyhawk.pressed).to.deep.equal({ ' ': false, w: false, 7: false });
+			chai.expect(keyhawk._pressed).to.deep.equal({ ' ': false, w: false, 7: false });
 
 			done();
 

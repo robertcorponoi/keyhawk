@@ -45,6 +45,10 @@ Keyhawk upon initialization can be passed an options object and for now there is
 To begin using Keyhawk, simply import the default module from wherever its located and specify as an option of whether you would like to use the built in game loop or not.
 
 ```js
+// Webpack
+import Keyhawk from 'keyhawk';
+
+// Browser
 import Keyhawk from './path/to/keyhawk.js';
 
 
@@ -76,7 +80,7 @@ Just this keybind on its own doesn't do much as there's no action associated wit
 ```js
 function hello() {
 
-    console.log('Hello!');
+  console.log('Hello!');
 
 }
 
@@ -90,7 +94,7 @@ Notice how `action` can be chained, this is because `keybind` returns an instanc
 ```js
 function hello() {
 
-    console.log('Hello!');
+  console.log('Hello!');
 
 }
 
@@ -104,7 +108,7 @@ Lastly, you can add a delay to the keybind so that a certain amount of time has 
 ```js
 function hello() {
 
-    console.log('Hello!');
+  console.log('Hello!');
 
 }
 
@@ -150,6 +154,16 @@ const keyhawk = new Keyhawk({ useLoop: false });
 // And inside of your game loop, call the following method providing the current time from your loop:
 keyhawk.check(time);
 ```
+
+## **Tests**
+
+To run the tests for Keyhawk use:
+
+```bash
+npm run test
+```
+
+**Note:** The keyhawk tests run in the browser so once you run the test command and the localhost server starts up, you have to open up a browser and navigate to 'localhost:8888/test/index.html' and then you'll be able to see all of the tests.
 
 ## **License**
 
