@@ -4,7 +4,6 @@
  * Contains a list of keys that can be used to create keybinds.
  */
 export default {
-
   ESC: 'escape',
 
   F1: 'f1',
@@ -166,5 +165,4 @@ export default {
   X: 'x',
   Y: 'y',
   Z: 'z',
-
 }

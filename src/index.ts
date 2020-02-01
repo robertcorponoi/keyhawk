@@ -3,6 +3,8 @@
 import Key from './key/key';
 import Keybind from './key/keybind';
 import Options from './options/Options';
+
+import Keys from './interfaces/Keys';
 import KeybindObject from './interfaces/KeybindObject';
 
 import Deltaframe from 'deltaframe';
@@ -11,7 +13,6 @@ import Deltaframe from 'deltaframe';
  * Create keybinds easily with single and multi key support
  */
 export default class Keyhawk {
-
 	/**
 	 * The selected options for Keyhawk.
 	 * 
@@ -26,7 +27,7 @@ export default class Keyhawk {
 	 * 
    * @private
 	 */
-  KEY: any = Key;
+  private _KEY: Keys = Key;
 
 	/**
 	 * A list of the created keybinds.
@@ -79,12 +80,17 @@ export default class Keyhawk {
 	 * @param {boolean} [options.useLoop=true] By default Keyhawk will use the Deltaframe module to handle the checking of keybind uses. If you would like to use your own game loop or even just rather use a simple debounce method, you can set this to false.
 	 */
   constructor(options: Object = {}) {
-
     this._options = new Options(options);
 
     this._boot();
-
   }
+
+  /**
+   * Returns the keys that can be used to create keybinds.
+   * 
+   * @returns {Keys}
+   */
+  get KEY(): Keys { return this._KEY; }
 
   /**
    * Returns whether keybinds are currently disabled or not.
@@ -106,19 +112,15 @@ export default class Keyhawk {
    * @private
    */
   private _boot() {
-
     window.addEventListener('keydown', (ev) => this._keydown(ev));
 
     window.addEventListener('keyup', (ev) => this._keyup(ev));
 
     if (this._options.useLoop) {
-
       this._loop = new Deltaframe({});
 
       this._loop.start((time: number) => this.check(time));
-
     }
-
   }
 
 	/**
@@ -129,13 +131,10 @@ export default class Keyhawk {
 	 * @returns {Keybind} Returns the newly created keybind.
 	 */
   keybind(...keys: Array<string>): (Keybind | undefined) {
-
     if (!keys) {
-
       console.warn('At least one key must be provided to create a keybind');
 
       return;
-
     }
 
     const keyObj: KeybindObject = {};
@@ -147,7 +146,6 @@ export default class Keyhawk {
     this._keybinds.push(keybind);
 
     return keybind;
-
   }
 
 	/**
@@ -156,7 +154,6 @@ export default class Keyhawk {
    * @param {number} time The current timestamp which is used to check for delays and is passed to the keybind's callback method.
 	 */
   check(time: number) {
-
     this._keybinds.forEach(o => {
 
       const isActive: boolean = Object.entries(o.keys).every(arr => this._pressed[arr[0]] == arr[1]);
@@ -166,17 +163,13 @@ export default class Keyhawk {
       const isTime: boolean = time - o._lastUsed > o._delay;
 
       if (this._disabled) {
-
         if (time < time + this._disabledTime) return;
 
         else this._resetDisabled();
-
       }
 
       if (isActive && isPastInitialDelay && isTime) o.run(time);
-
     });
-
   }
 
   /**
@@ -185,11 +178,9 @@ export default class Keyhawk {
    * @param {number} [lengthOfTime=Infinity] An optional amount of time to wait until keybinds are automatically enabled again. 
    */
   disable(lengthOfTime: number = Infinity) {
-
     this._disabled = true;
 
     this._disabledTime =  lengthOfTime;
-
   }
 
   /**
@@ -197,9 +188,7 @@ export default class Keyhawk {
    * keybinds again.
    */
   enable() {
-
     this._resetDisabled();
-
   }
 
 	/**
@@ -210,13 +199,11 @@ export default class Keyhawk {
 	 * @param {KeyboardEvent} event The event generated from the keypress.
 	 */
   private _keydown(event: KeyboardEvent) {
-
     this._pressed[event.key.toLowerCase()] = true;
 
     event.preventDefault();
 
     return;
-
   }
 
 	/**
@@ -227,13 +214,9 @@ export default class Keyhawk {
 	 * @param {KeyboardEvent} event The event generated from the keypress.
 	 */
   private _keyup(event: KeyboardEvent) {
-
     this._pressed[event.key.toLowerCase()] = false;
 
     event.preventDefault();
-
-    return;
-
   }
 
   /**
@@ -243,11 +226,8 @@ export default class Keyhawk {
    * @private
    */
   private _resetDisabled() {
-
     this._disabled = false
     
     this._disabledTime = 0;
-
   }
-
 }

@@ -4,7 +4,6 @@
  * Defines the options available for Keyhawk and their default values, if any exist.
  */
 export default class Options {
-
 	/**
 	 * By default Keyhawk will use the Deltaframe module to handle the checking of keybind uses.
 	 * 
@@ -21,9 +20,6 @@ export default class Options {
 	 * @param {Object} options The initialization options passed to Keyhawk.
 	 */
 	constructor(options: Object) {
-
 		Object.assign(this, options);
-
 	}
-
 }

@@ -1,3 +1,12 @@
+1.3.0 / 2020-01-31
+==================
+* [FEATURE] Created an interface for the Keys so that it wouldn't have an `any` type anymore.
+* [DOCS] Moved the logo to the graphics repository.
+* [MISC] Made KEY private and added a getter.
+* [MISC] Removed empty spaces and an unnecessary return.
+* [MISC] Updated all dependencies to their latest versions.
+* [MISC] Updated license year to reflect new year.
+
 1.2.0 / 2019-12-11
 ==================
 * [FEATURE] Added getters for disabled and disabledTime.

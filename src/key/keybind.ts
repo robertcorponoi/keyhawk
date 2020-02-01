@@ -11,7 +11,6 @@ import KeybindObject from '../interfaces/KeybindObject';
  * Keybinds can also have a delay to ensure that a certain amount of time has passed between presses.
  */
 export default class Keybind {
-
 	/**
 	 * The keys that are assigned to this keybind.
    * 
@@ -64,9 +63,7 @@ export default class Keybind {
 	 * @param {KeybindObject} keys The keys to bind to this keybind.
 	 */
 	constructor(keys: KeybindObject) {
-
 		this._keys = keys;
-
 	}
 
 	/**
@@ -91,13 +88,11 @@ export default class Keybind {
 	 * @returns {Keybind} Returns this for chaining.
 	 */
 	delay(ms: number): Keybind {
-
 		this._delay = ms;
 
 		this._lastUsed = -this._delay + 1;
 
 		return this;
-
   }
   
   /**
@@ -108,11 +103,9 @@ export default class Keybind {
    * @returns {Keybind} Retursn this for chaining.
    */
   initialDelay(ms: number): Keybind {
-
     this._initialDelay = ms;
 
     return this;
-
   }
 
 	/**
@@ -123,11 +116,9 @@ export default class Keybind {
 	 * @returns {Keybind} Returns this for chaining.
 	 */
 	action(fn: Function): Keybind {
-
 		this._action = fn;
 
 		return this;
-
 	}
 
 	/**
@@ -136,11 +127,9 @@ export default class Keybind {
 	 * @param {number} time The time that the keybind was used.
 	 */
 	run(time: number) {
-
 		this._action();
 
 		this._lastUsed = time;
-
 	}
 
 	/**
@@ -149,5 +138,4 @@ export default class Keybind {
 	 * @private
 	 */
 	private _noop() { }
-
 }

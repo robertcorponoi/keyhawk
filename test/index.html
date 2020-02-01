@@ -1,8 +1,6 @@
 <!doctype html>
 <html>
-
 <head>
-
   <meta charset="utf-8">
 
   <title>Keyhawk Tests</title>
@@ -10,11 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" />
-
 </head>
-
 <body>
-
   <div id="mocha"></div>
 
   <script src="https://unpkg.com/chai/chai.js"></script>
@@ -22,10 +17,8 @@
   <script src="../node_modules/sinon/pkg/sinon.js"></script>
 
   <script class="mocha-init" type="module">
-
     mocha.setup('bdd');
     mocha.checkLeaks();
-
   </script>
 
   <script type="module" src="keyhawk.keybind.test.js"></script>
@@ -34,11 +27,7 @@
   <script type="module" src="keyhawk.custom-loop.test.js"></script>
 
   <script class="mocha-exec" type="module">
-
     mocha.run();
-    
   </script>
-
 </body>
-
 </html>

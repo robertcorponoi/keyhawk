@@ -1,4 +1,5 @@
 import Keybind from './key/keybind';
+import Keys from './interfaces/Keys';
 /**
  * Create keybinds easily with single and multi key support
  */
@@ -16,7 +17,7 @@ export default class Keyhawk {
      *
    * @private
      */
-    KEY: any;
+    private _KEY;
     /**
      * A list of the created keybinds.
      *
@@ -63,6 +64,12 @@ export default class Keyhawk {
      * @param {boolean} [options.useLoop=true] By default Keyhawk will use the Deltaframe module to handle the checking of keybind uses. If you would like to use your own game loop or even just rather use a simple debounce method, you can set this to false.
      */
     constructor(options?: Object);
+    /**
+     * Returns the keys that can be used to create keybinds.
+     *
+     * @returns {Keys}
+     */
+    get KEY(): Keys;
     /**
      * Returns whether keybinds are currently disabled or not.
      *
