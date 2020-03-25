@@ -49,6 +49,6 @@
     "access": "public"
   },
   "dependencies": {
-    "deltaframe": "^1.3.0"
+    "deltaframe": "^2.0.2"
   }
 }
